@@ -33,4 +33,7 @@ SampleApp::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # rails asked for this (moving forward to rails 5)
+  config.active_support.test_order = :random
 end
