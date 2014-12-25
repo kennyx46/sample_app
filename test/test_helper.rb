@@ -2,6 +2,11 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+# tutorial asked for this
+require 'minitest/reporters'
+MiniTest::Reporters.use!
+# to show red and green
+
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
 
