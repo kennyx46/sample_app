@@ -3,7 +3,8 @@ require 'test_helper'
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
   test "invalid signup information" do
-    get signup_path # new_user_path???
+    get new_user_path
+    # get signup_path same
     before_count = User.count
     post users_path, user: { name: "",
                             email: "user@invalid",
@@ -24,6 +25,17 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                password_confirmation: "bar" }
     end
     assert_template 'users/new'
+  end
+
+  test "valid signup information" do
+    get signup_path
+    assert_difference 'User.count', 1 do
+      post_via_redirect users_path, user: { name:  "Example user",
+                                             email: "user@example.com",
+                                             password:              "password",
+                                             password_confirmation: "password" }
+    end
+    assert_template 'users/show'
   end
 
 end
